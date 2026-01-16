@@ -2,7 +2,9 @@
 
 A simple timeless jewel calculator with a skill tree view
 
-Hosted Version: [https://vilsol.github.io/timeless-jewels](https://vilsol.github.io/timeless-jewels)
+Original Hosted Version: [https://vilsol.github.io/timeless-jewels](https://vilsol.github.io/timeless-jewels)
+
+Modified Hosted Version: [https://zavulon-ao.github.io/timeless-jewels](https://zavulon-ao.github.io/timeless-jewels)
 
 Uses data extracted with https://github.com/Vilsol/go-pob-data
 
