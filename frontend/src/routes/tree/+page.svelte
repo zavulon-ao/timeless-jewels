@@ -26,7 +26,7 @@
     ? Object.keys(data.TimelessJewelConquerors[selectedJewel.value]).map((k) => ({
         value: k,
         label: k
-      }))
+      })).concat([{ value: 'Any', label: 'Any' }])
     : [];
 
   let selectedConqueror = searchParams.has('conqueror')
@@ -166,14 +166,14 @@
   let currentSeed = 0;
   let searchResults: SearchResults;
   let searchJewel = 1;
-  let searchConqueror = '';
+  let searchConqueror: string | null = null;
   const search = () => {
     if (!circledNode) {
       return;
     }
 
     searchJewel = selectedJewel.value;
-    searchConqueror = selectedConqueror.value;
+    searchConqueror = selectedConqueror?.value === 'Any' ? null : selectedConqueror.value;
     searching = true;
     searchResults = undefined;
 
