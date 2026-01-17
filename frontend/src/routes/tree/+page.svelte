@@ -26,7 +26,7 @@
     ? Object.keys(data.TimelessJewelConquerors[selectedJewel.value]).map((k) => ({
         value: k,
         label: k
-      }))
+      })).concat([{ value: 'Any', label: 'Any' }])
     : [];
 
   let selectedConqueror = searchParams.has('conqueror')
@@ -166,20 +166,20 @@
   let currentSeed = 0;
   let searchResults: SearchResults;
   let searchJewel = 1;
-  let searchConqueror = '';
+  let searchConqueror: string | null = null;
   const search = () => {
     if (!circledNode) {
       return;
     }
 
     searchJewel = selectedJewel.value;
-    searchConqueror = selectedConqueror.value;
+    searchConqueror = selectedConqueror?.value === 'Any' ? null : selectedConqueror.value;
     searching = true;
     searchResults = undefined;
 
     const query: ReverseSearchConfig = {
       jewel: selectedJewel.value,
-      conqueror: selectedConqueror.value,
+      conqueror: selectedConqueror?.value === 'Any' ? null : selectedConqueror.value,
       nodes: affectedNodes
         .filter((n) => !disabled.has(n.skill))
         .map((n) => data.TreeToPassive[n.skill])
@@ -530,7 +530,7 @@
               <Select items={conquerors} bind:value={selectedConqueror} on:change={updateUrl} />
             </div>
 
-            {#if selectedConqueror && Object.keys(data.TimelessJewelConquerors[selectedJewel.value]).indexOf(selectedConqueror.value) >= 0}
+            {#if selectedConqueror && (selectedConqueror.value == 'Any' || Object.keys(data.TimelessJewelConquerors[selectedJewel.value]).indexOf(selectedConqueror.value) >= 0)}
               <div class="mt-4 w-full flex flex-row">
                 <button class="selection-button" class:selected={mode === 'seed'} on:click={() => setMode('seed')}>
                   Enter Seed
