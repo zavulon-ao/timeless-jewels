@@ -2,8 +2,9 @@ package exposition
 
 import (
 	"github.com/Vilsol/crystalline"
-	"github.com/Vilsol/timeless-jewels/calculator"
-	"github.com/Vilsol/timeless-jewels/data"
+
+	"github.com/zavulon-ao/timeless-jewels/calculator"
+	"github.com/zavulon-ao/timeless-jewels/data"
 )
 
 func Expose() *crystalline.Exposer {
